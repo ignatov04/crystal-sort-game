@@ -1,0 +1,11 @@
+{
+    "product": "Crystal Sort: Mine Lab",
+    "unityVersion": "6000.3.22f1",
+    "target": "WebGL",
+    "bundleVersion": "0.9.0",
+    "builtAtUtc": "2026-09-05T06:19:36.0169650Z",
+    "totalSizeBytes": 128480077,
+    "scenes": [
+        "Assets/Scenes/SampleScene.unity"
+    ]
+}
