@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=540 height=960 tabindex="-1"></canvas>
+      <canvas id="unity-canvas" width=1080 height=1920 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -52,12 +52,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/WebGL-GitHub-release-v5.loader.js";
+      var loaderUrl = buildUrl + "/WebGL-v768.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/WebGL-GitHub-release-v5.data",
-        frameworkUrl: buildUrl + "/WebGL-GitHub-release-v5.framework.js",
-        codeUrl: buildUrl + "/WebGL-GitHub-release-v5.wasm",
+        dataUrl: buildUrl + "/WebGL-v768.data",
+        frameworkUrl: buildUrl + "/WebGL-v768.framework.js",
+        codeUrl: buildUrl + "/WebGL-v768.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Crystal Lab Studio",
         productName: "Crystal Sort: Mine Lab",

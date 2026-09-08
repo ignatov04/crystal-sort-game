@@ -1,3 +1,4 @@
+Build/WebGL-v768.data filter=lfs diff=lfs merge=lfs -text
 Build/WebGL-v783.data.gz filter=lfs diff=lfs merge=lfs -text
 Build/WebGL-v784.data.gz filter=lfs diff=lfs merge=lfs -text
 Build/WebGL-v786.data.gz filter=lfs diff=lfs merge=lfs -text
