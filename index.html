@@ -52,16 +52,17 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/WebGL-v781.loader.js";
+      var loaderUrl = buildUrl + "/WebGL-v783.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/WebGL-v781.data",
-        frameworkUrl: buildUrl + "/WebGL-v781.framework.js",
-        codeUrl: buildUrl + "/WebGL-v781.wasm",
+        dataUrl: buildUrl + "/WebGL-v783.data.gz",
+        frameworkUrl: buildUrl + "/WebGL-v783.framework.js",
+        codeUrl: buildUrl + "/WebGL-v783.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Crystal Lab Studio",
         productName: "Crystal Sort: Mine Lab",
         productVersion: "0.9.0",
+        cacheControl: function(url) { return "immutable"; },
         showBanner: unityShowBanner,
         // errorHandler: function(err, url, line) {
         //    alert("error " + err + " occurred at line " + line);
@@ -163,7 +164,15 @@
                 };
 
               }).catch((message) => {
-                alert(message);
+                document.querySelector("#unity-loading-bar").style.display = "none";
+                var warning = document.querySelector("#unity-warning");
+                warning.innerHTML = "<div style='font:600 15px Arial;line-height:1.4;color:#061522;margin-bottom:12px'>Не удалось загрузить игру.<br><small style='font-weight:400'>Проверьте соединение и повторите попытку.</small></div>";
+                var retry = document.createElement("button");
+                retry.textContent = "Повторить загрузку";
+                retry.style = "display:block;margin:0 auto;padding:10px 18px;border:0;border-radius:8px;background:#1e6ee8;color:white;font:600 15px Arial;cursor:pointer";
+                retry.onclick = function() { window.location.reload(); };
+                warning.appendChild(retry);
+                warning.style.display = "block";
               });
             };
 
