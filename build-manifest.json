@@ -3,8 +3,8 @@
     "unityVersion": "6000.3.22f1",
     "target": "WebGL",
     "bundleVersion": "0.9.0",
-    "builtAtUtc": "2026-09-08T21:47:46.5207040Z",
-    "totalSizeBytes": 168323985,
+    "builtAtUtc": "2026-09-08T22:16:31.6833200Z",
+    "totalSizeBytes": 168746545,
     "scenes": [
         "Assets/Scenes/SampleScene.unity"
     ]
