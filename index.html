@@ -52,12 +52,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/WebGL-v773.loader.js";
+      var loaderUrl = buildUrl + "/WebGL-v774.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/WebGL-v773.data",
-        frameworkUrl: buildUrl + "/WebGL-v773.framework.js",
-        codeUrl: buildUrl + "/WebGL-v773.wasm",
+        dataUrl: buildUrl + "/WebGL-v774.data",
+        frameworkUrl: buildUrl + "/WebGL-v774.framework.js",
+        codeUrl: buildUrl + "/WebGL-v774.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Crystal Lab Studio",
         productName: "Crystal Sort: Mine Lab",
@@ -102,9 +102,13 @@
         // Telegram's in-app browser. Those browsers may retain inline stock
         // dimensions and otherwise render only the left portion of the game.
         function resizeMobileShell() {
-          var viewportWidth = document.documentElement.clientWidth || (window.visualViewport ? window.visualViewport.width : window.innerWidth);
-          var viewportHeight = document.documentElement.clientHeight || (window.visualViewport ? window.visualViewport.height : window.innerHeight);
+          var viewportWidth = window.visualViewport ? window.visualViewport.width : (document.documentElement.clientWidth || window.innerWidth);
+          var viewportHeight = window.visualViewport ? window.visualViewport.height : (document.documentElement.clientHeight || window.innerHeight);
           var container = document.querySelector('#unity-container');
+          document.documentElement.style.setProperty('width', '100%', 'important');
+          document.documentElement.style.setProperty('height', '100%', 'important');
+          document.body.style.setProperty('width', '100%', 'important');
+          document.body.style.setProperty('height', '100%', 'important');
           container.style.setProperty('left', '0px', 'important');
           container.style.setProperty('top', '0px', 'important');
           container.style.setProperty('transform', 'none', 'important');
@@ -118,10 +122,20 @@
         resizeMobileShell();
         window.addEventListener('resize', resizeMobileShell);
         if (window.visualViewport) window.visualViewport.addEventListener('resize', resizeMobileShell);
-        if (window.ResizeObserver) new ResizeObserver(resizeMobileShell).observe(document.documentElement);
+        if (window.ResizeObserver) {
+          var shellObserver = new ResizeObserver(resizeMobileShell);
+          shellObserver.observe(document.documentElement);
+          shellObserver.observe(document.body);
+          shellObserver.observe(document.querySelector('#unity-container'));
+          shellObserver.observe(canvas);
+        }
+        if (window.MutationObserver) {
+          new MutationObserver(resizeMobileShell).observe(document.querySelector('#unity-container'), { attributes: true, attributeFilter: ['style', 'class'] });
+          new MutationObserver(resizeMobileShell).observe(canvas, { attributes: true, attributeFilter: ['style', 'class', 'width', 'height'] });
+        }
         // Unity may reapply its template dimensions during and immediately after
         // createUnityInstance; repeat the correction across that handoff window.
-        [0, 100, 500, 1000, 2000].forEach(function(delay) { setTimeout(resizeMobileShell, delay); });
+        [0, 100, 250, 500, 1000, 1500, 2000, 3000, 4000, 5000].forEach(function(delay) { setTimeout(resizeMobileShell, delay); });
 
 
         // To lower canvas resolution on mobile devices to gain some
